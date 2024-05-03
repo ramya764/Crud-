@@ -1,0 +1,33 @@
+# app.py
+
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+db = SQLAlchemy(app)
+
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    phone = db.Column(db.String(15), nullable=False)
+
+@app.route('/')
+def index():
+    employees = Employee.query.all()
+    return render_template('index.html', employees=employees)
+
+@app.route('/add', methods=['POST'])
+def add_employee():
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    new_employee = Employee(name=name, email=email, phone=phone)
+    db.session.add(new_employee)
+    db.session.commit()
+    return 'Employee added successfully'
+
+if __name__ == '__main__':
+    db.create_all()
+    app.run(debug=True)

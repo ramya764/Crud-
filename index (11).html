@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="table-box">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.phone }}</td>
+                        <td>
+                            <a href="/update/{{ employee.id }}" class="edit-button">Edit</a>
+                            <a href="/delete/{{ employee.id }}" class="delete-button">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <!-- Additional sample employees -->
+                <tr>
+                    <td>1</td>
+                    <td>Naima Akef</td>
+                    <td>Naima@gmail.com</td>
+                    <td>222-127-9876</td>
+                    <td>
+                        <a href="#" class="edit-button">Edit</a>
+                        <a href="#" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Nagwa Fouad</td>
+                    <td>Nagwa@gmail.com</td>
+                    <td>222-977-6234</td>
+                    <td>
+                        <a href="#" class="edit-button">Edit</a>
+                        <a href="#" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Samia Gamal</td>
+                    <td>Samia@gmail.com</td>
+                    <td>222-456-7290</td>
+                    <td>
+                        <a href="#" class="edit-button">Edit</a>
+                        <a href="#" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+                <!-- End additional sample employees -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

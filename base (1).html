@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Flask CRUD Web Application Development</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div class="title-box">
+        <h1>Python Flask CRUD Web Application Development</h1>
+    </div>
+    <div class="manage-box">
+        <h2>Manage Employees</h2>
+        <a href="/add" class="add-button">Add Employee</a>
+    </div>
+    <div class="alert-box">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-dismissable alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+</body>
+</html>
